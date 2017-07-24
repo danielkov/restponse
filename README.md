@@ -43,7 +43,7 @@ To add a new key and value pair to the generated JSON, you can just add it to th
 In this example we'll add version and name information:
 
 ```js
-const restponse = Restponse({
+const restponse = new Restponse({
   version: '1.2',
   name: 'MyAPI'
 })
@@ -124,6 +124,16 @@ app.get('/errors/404', (req, res) => {
     info: 'This is an example 404 response.'
   }))
 })
+```
+
+The above request would return the following JSON response:
+
+```json
+{
+  "status": 404,
+  "reason": "Not found",
+  "info": "This is an example 404 response."
+}
 ```
 
 ## Contributing

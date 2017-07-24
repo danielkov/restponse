@@ -1,5 +1,5 @@
 const Restponse = require('../index')
-const { notDeepEqual, ok, deepEqual } = require('assert')
+const { notDeepEqual, ok, deepEqual, equal } = require('assert')
 
 describe('Restponse', () => {
   describe('constructor', () => {
@@ -59,4 +59,40 @@ describe('Restponse', () => {
       notDeepEqual(restponse[201], {status: '200', reason: 'OK', message})
     })
   })
+})
+
+describe('method(s) of instance', () => {
+  describe('extend()', () => {
+    it('should be a method of the instance', () => {
+      const restponse = new Restponse()
+
+      equal(typeof restponse.extend, 'function')
+    })
+    it('should accept 2 parameters, of number and object', () => {
+      const restponse = new Restponse()
+
+      ok(restponse.extend(200, {}))
+    })
+    it('should return an extended object of the used parameter at first position', () => {
+      const restponse = new Restponse()
+      const response = restponse.extend(200, {note: 'Test'})
+      const expected = {
+        status: 200,
+        reason: 'OK',
+        note: 'Test'
+      }
+
+      deepEqual(response, expected)
+    })
+    it('should extend an empty object when given a status code that is not valid', () => {
+      const restponse = new Restponse()
+      const response = restponse.extend(600, {note: 'Test'})
+      const expected = {
+        note: 'Test'
+      }
+
+      deepEqual(response, expected)
+    })
+  })
+
 })
