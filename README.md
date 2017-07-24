@@ -87,7 +87,6 @@ This feature is particularly useful if you want developers to have quick access 
 
 Finally if you want to add fields that only apply to specific statuses, you can do so by giving an object that has the specific key for the request.
 
-It is advised to provide at least an empty string to all the status codes.
 
 ```js
 const restponse = new Restponse({
@@ -114,6 +113,16 @@ app.get('/', (req, res) => {
   let response = Object.assign({}, restponse[200])
   response.payload = 'Welcome to index.'
   res.send(response)
+})
+```
+
+You can also use the method, `extend()`, to add payload in a more convenient way. This will also make sure you do not mutate the objects of the class instance.
+
+```js
+app.get('/errors/404', (req, res) => {
+  res.send(restponse.extend(404, {
+    info: 'This is an example 404 response.'
+  }))
 })
 ```
 
