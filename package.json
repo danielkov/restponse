@@ -1,6 +1,6 @@
 {
   "name": "restponse",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Easy RESTful JSON responses for cleaner API development.",
   "main": "index.js",
   "repository": "git@github.com:danielkov/restponse.git",
